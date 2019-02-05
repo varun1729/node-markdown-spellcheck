@@ -40,7 +40,11 @@ function initialise(options) {
 }
 
 function normaliseApos(word) {
-  return word.replace(/\u2019/, "'");
+  word = word.replace(/\u2019/, "'");
+  if (word.length >= 2 && word[0] === '~' && word[word.length - 1] === '~') {
+    return word.substr(1, word.length - 1);
+  }
+  return word;
 }
 
 function checkWord(word, options) {
